@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auspice Fashions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===================== */
+/* BASE */
+/* ===================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter', sans-serif;
+  background:#F8F5F0;
+  color:#111;
+}
+
+/* ===================== */
+/* HEADER */
+/* ===================== */
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 80px;
+  background:rgba(0,0,0,0.88);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+/* LOGO */
+
+.header-logo{
+  display:flex;
+  align-items:center;
+  padding:14px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.05);
+  transition:0.5s ease;
+}
+
+.header-logo img{
+  height:78px;
+  transition:0.5s ease;
+  filter:brightness(1.15);
+}
+
+.header-logo:hover{
+  transform:scale(1.04);
+  background:rgba(197,164,126,0.18);
+  box-shadow:0 15px 40px rgba(197,164,126,0.25);
+}
+
+/* NAVIGATION */
+
+nav{
+  display:flex;
+  gap:28px;
+}
+
+nav a{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:0.3s;
+}
+
+/* Hyperlink selectors */
+
+nav a:link{ color:white; text-decoration:none; }
+nav a:visited{ color:#C5A47E; }
+nav a:hover{ border-bottom:1px solid #C5A47E; opacity:0.7; }
+nav a:active{ color:white; }
+
+/* ===================== */
+/* HERO */
+/* ===================== */
+
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:1.5s ease;
+}
+
+.slide.active{ opacity:1; }
+
+.hero-overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  color:white;
+}
+
+.hero-overlay h1{
+  font-family:'Fraunces', serif;
+  font-size:78px;
+}
+
+.hero-overlay p{
+  margin-top:12px;
+  opacity:0.9;
+  letter-spacing:1px;
+}
+
+.hero-btn{
+  margin-top:25px;
+  padding:12px 28px;
+  border:1px solid #C5A47E;
+  color:#C5A47E;
+  text-decoration:none;
+  letter-spacing:2px;
+  font-size:12px;
+}
+
+.hero-btn:hover{
+  background:#C5A47E;
+  color:#000;
+}
+
+/* ===================== */
+/* FEATURED GRID */
+/* ===================== */
+
+.section{
+  padding:120px 80px;
+  text-align:center;
+}
+
+.section h2{
+  font-family:'Fraunces', serif;
+  font-size:36px;
+  margin-bottom:60px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.card{
+  height:420px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  transition:0.4s;
+}
+
+.card:hover{ transform:scale(1.02); }
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+.card-label{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  color:white;
+  font-family:'Fraunces', serif;
+  font-size:18px;
+}
+
+/* ===================== */
+/* PREMIUM ORDERED LIST (UPDATED) */
+/* ===================== */
+
+.vertical-menu{
+  width:100%;
+  max-width:720px;
+  margin:120px auto 80px auto;
+  padding:0 20px;
+}
+
+.vertical-menu ol{
+  list-style:none;
+  counter-reset:item;
+  border-top:1px solid rgba(0,0,0,0.08);
+}
+
+.vertical-menu li{
+  counter-increment:item;
+  padding:26px 10px;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.3s;
+}
+
+.vertical-menu li:hover{
+  background:rgba(197,164,126,0.06);
+  padding-left:18px;
+}
+
+.vertical-menu li a{
+  text-decoration:none;
+  color:#111;
+  font-size:14px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  display:flex;
+  justify-content:space-between;
+  width:100%;
+  align-items:center;
+}
+
+.vertical-menu li a::before{
+  content:"0" counter(item);
+  font-family:'Fraunces', serif;
+  color:#C5A47E;
+  font-size:16px;
+  margin-right:18px;
+  min-width:40px;
+}
+
+.vertical-menu li a::after{
+  content:"→";
+  color:#C5A47E;
+  font-size:18px;
+  transition:0.3s;
+}
+
+.vertical-menu li:hover a::after{
+  transform:translateX(6px);
+}
+
+/* ===================== */
+/* FOOTER */
+/* ===================== */
+
+footer{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:80px 20px;
+}
+
+footer h3{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+}
+
+footer p{
+  font-size:13px;
+  opacity:0.8;
+}
+
+/* SOCIALS */
+
+.socials{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.socials img{
+  width:22px;
+  height:22px;
+  filter:invert(1);
+  opacity:0.75;
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+@media(max-width:900px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-overlay h1{
+    font-size:42px;
+  }
+
+  header{
+    padding:18px 25px;
+  }
+
+  .header-logo img{
+    height:54px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+  <div class="header-logo">
+    <img src="Auspice Fashions Logo.png" alt="Logo">
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="slide active" style="background-image:url('https://images.pexels.com/photos/3777946/pexels-photo-3777946.jpeg');"></div>
+  <div class="slide" style="background-image:url('https://images.pexels.com/photos/6311606/pexels-photo-6311606.jpeg');"></div>
+  <div class="slide" style="background-image:url('https://images.pexels.com/photos/7691226/pexels-photo-7691226.jpeg');"></div>
+
+  <div class="hero-overlay">
+    <h1>Redefining Elegance</h1>
+    <p>Luxury African fashion for the modern professional</p>
+    <a class="hero-btn" href="shop.html">Explore Collection</a>
+  </div>
+
+</section>
+
+<!-- FEATURED -->
+<section class="section">
+
+<h2>Featured Collection</h2>
+
+<div class="grid">
+
+  <div class="card" style="background-image:url('https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg');">
+    <div class="card-label">Signature Look</div>
+  </div>
+
+  <div class="card" style="background-image:url('https://images.pexels.com/photos/6311475/pexels-photo-6311475.jpeg');">
+    <div class="card-label">Elegant Wear</div>
+  </div>
+
+  <div class="card" style="background-image:url('https://images.pexels.com/photos/7691177/pexels-photo-7691177.jpeg');">
+    <div class="card-label">Premium Style</div>
+  </div>
+
+</div>
+
+</section>
+
+<!-- PREMIUM ORDERED LIST -->
+<div class="vertical-menu">
+
+  <ol>
+    <li><a href="shop.html">Women Collection</a></li>
+    <li><a href="shop.html">Men Collection</a></li>
+    <li><a href="shop.html">Accessories</a></li>
+    <li><a href="shop.html">New Arrivals</a></li>
+  </ol>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+  <h3>Auspice Fashions</h3>
+  <p>Redefining Elegance</p>
+
+  <div class="socials">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png">
+
+  </div>
+
+  <p style="margin-top:20px;">
+    +256703785016 | nlucille@gmail.com
+  </p>
+
+</footer>
+
+<script>
+let slides=document.querySelectorAll(".slide");
+let i=0;
+
+setInterval(()=>{
+  slides[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+},4500);
+</script>
+
+</body>
+</html>
