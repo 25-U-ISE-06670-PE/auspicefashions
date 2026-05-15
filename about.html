@@ -347,23 +347,44 @@ footer{
 
 <!-- HERO -->
 
-<section class="about-hero fade-in">
-<video class="welcome-video" controls>
-<source src="welcome.mp4"
-type="video/mp4">
-Your browser does not support the video tag.
-</video>
+<section class="hero-video">
 
-<style>
-.welcome-video{
-display: block;
-margin: auto;
-height: 500px;
-width: auto;
-border-radius: 10px;
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="welcome.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>Luxury Redefined</h1>
+  </div>
+
+</section>
+
+.hero-video{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
 }
-</style>
 
+#bg-video{
+  position:absolute;
+  top:50%;
+  left:50%;
+  min-width:100%;
+  min-height:100%;
+  transform:translate(-50%, -50%);
+  object-fit:cover;
+  z-index:-1;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  color:white;
+  text-align:center;
+  top:50%;
+  transform:translateY(-50%);
+}
+  
   <div>
     <h1>Elegance Inspired by Africa</h1>
 
